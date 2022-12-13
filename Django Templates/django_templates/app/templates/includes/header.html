@@ -1,0 +1,22 @@
+{% load meus_filtros %}
+<header class="bg-primary bg-gradient text-white">
+    <div class="container px-4 text-center">
+        <h1 class="fw-bolder">{{titulo}}</h1>
+        <h2 class="fw-bolder">{{descricao}}</h2>
+        <p class="lead">A functional Bootstrap 5 boilerplate for one page scrolling websites</p>
+        <a class="btn btn-lg btn-light" href="#about">Start scrolling!</a>
+        {% for id, esporte in esportes.items %}
+            <p>{{esporte.nome}}</p><br>
+        {% empty %}
+            <h3>Não há esportes cadastrados</h3>
+        {% endfor %}
+
+        {% for id, pessoa in pessoas.items %}
+            {% if pessoa.nome == 'daniel' %}
+                <h1>{{pessoa.nome|upper|remover_letra:'A'}}</h1>
+            {% else %}
+                <h3>{{pessoa.nome|capfirst}}</h3>
+            {% endif %}
+        {% endfor %}
+    </div>
+</header>
