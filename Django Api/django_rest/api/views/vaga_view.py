@@ -4,12 +4,20 @@ from rest_framework import status
 from ..services import vaga_service
 from ..serializers import vaga_serializer
 from ..entidades import vaga
+#from rest_framework.pagination import PageNumberPagination
+from ..pagination import PaginacaoCustomizada
+from rest_framework.permissions import IsAuthenticated
 
 class VagaList(APIView):
+    permission_classes = [IsAuthenticated]
     def get(self, request, format=None):
+        #paginacao = PageNumberPagination()
+        paginacao = PaginacaoCustomizada()
         vagas = vaga_service.listar_vagas()
-        serializer = vaga_serializer.VagaSerializer(vagas, many=True)
-        return Response(serializer.data, status = status.HTTP_200_OK)
+        resultado = paginacao.paginate_queryset(vagas, request)
+        serializer = vaga_serializer.VagaSerializer(resultado, context = {'request': request}, many=True)
+        return paginacao.get_paginated_response(serializer.data)
+       
 
     def post(self, request, format=None):
         serializer = vaga_serializer.VagaSerializer(data = request.data)
@@ -38,7 +46,8 @@ class VagaList(APIView):
 
 
 class VagaDetalhes(APIView):
+    permission_classes = [IsAuthenticated]
     def get(self, request, id, format=None):
         vaga = vaga_service.listar_vaga_id(id)
-        serializer = vaga_serializer.VagaSerializer(vaga)
+        serializer = vaga_serializer.VagaSerializer(vaga, context = {'request':request})
         return Response(serializer.data, status=status.HTTP_200_OK)

@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+{% load meus_filtros %}
+
+{% block title %}
+    Listagem de Produtos
+{% endblock title %}
+
+{% block conteudo %}
+
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Nome</th>
+            <th>Descrição</th>
+            <th>Valor</th>
+            
+        </tr>
+    </thead>
+
+    
+    <tbody>
+        {% for produto in produtos %}
+        <tr>
+            <td><a href="{}">{{produto.nome}}</a></td>
+            <td>{{produto.descricao}}</td>
+            <td>{{produto.valor}}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+   
+
+</table>
+<a href="{% url 'cadastrar_produto' %}"><button class="btn btn-primary">Cadastrar</button></a>
+{% endblock conteudo %}

@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+{% load meus_filtros %}
+
+{% block title %}
+    {{ pedido.cliente }}
+{% endblock title %}
+
+{% block conteudo %}
+
+<div class="card">
+    <div class="card-header">
+        Dados do pedido
+    </div>
+     
+    <div class="card-body">
+        <h5 class="card-title">Cliente: {{pedido.cliente}}</h5>
+        <h5 class="card-title">Data do pedido: {{pedido.data_pedido}}</h5>
+        <h5 class="card-title">Valor: {{pedido.valor}}</h5>
+        <h5 class="card-title">Observações: {{pedido.observacoes}}</h5>
+        <h5 class="card-title">Status: {{pedido.status}}</h5>
+    </div>
+    
+    <div class="p-2">
+        <a class="btn btn-success" href="{% url 'editar_pedido' id %}">Editar</a>
+        <a class="btn btn-warning" href="{% url 'listar_pedidos' %}">Voltar</a>
+    </div>
+    
+</div>
+
+
+{% endblock conteudo %}

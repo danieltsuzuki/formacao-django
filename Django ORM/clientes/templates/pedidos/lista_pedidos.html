@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+{% load meus_filtros %}
+
+{% block title %}
+    Listagem de Pedidos
+{% endblock title %}
+
+{% block conteudo %}
+
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Cliente</th>
+            <th>Observações</th>
+            <th>Valor</th>
+            <th>Data do pedido</th>
+            <th>Status</th>
+        </tr>
+    </thead>
+
+    
+    <tbody>
+        {% for pedido in pedidos %}
+        <tr>
+            <td><a href="{% url 'listar_pedido_id' pedido.id %}">{{pedido.cliente}}</a></td>
+            <td>{{pedido.observacoes}}</td>
+            <td>{{pedido.valor}}</td>
+            <td>{{pedido.status}}</td>
+            <td>{{pedido.data_pedido | date:"d M Y"}}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+   
+
+</table>
+<a href="{% url 'cadastrar_pedido' %}"><button class="btn btn-primary">Cadastrar</button></a>
+{% endblock conteudo %}
