@@ -9,13 +9,13 @@
 
 <div class = 'card'>
     <div class="card-header">
-        Produto
+        Links
     </div>
 
     <div class="card-body">
-        <h5>Nome: {{produto.nome}}</h5>
-        <h5>Descrição: {{produto.descricao}}</h5>
-        <h5>Valor: {{produto.valor}}</h5>
+        <label><a href="{% url 'listar_clientes' %}">Clientes</a></label>
+        <label><a href="{% url 'listar_produtos' %}">Produtos</a></label>
+        <label><a href="{% url 'listar_pedidos' %}">Pedidos</a></label>
     </div>
 
 </div>

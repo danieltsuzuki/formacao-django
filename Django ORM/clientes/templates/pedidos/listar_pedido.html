@@ -19,9 +19,18 @@
         <h5 class="card-title">Observações: {{pedido.observacoes}}</h5>
         <h5 class="card-title">Status: {{pedido.status}}</h5>
     </div>
-    
+    <hr>
+    <div class="card-body">
+
+        <h4>Produtos:</h4>
+        {% for produto in pedido.produtos.all %}
+        <h5 class="card-title">{{produto.nome}}</h5>
+        {% endfor %}
+    </div>
+ 
+
     <div class="p-2">
-        <a class="btn btn-success" href="{% url 'editar_pedido' id %}">Editar</a>
+        <a class="btn btn-success" href="{% url 'editar_pedido' pedido.id %}">Editar</a>
         <a class="btn btn-warning" href="{% url 'listar_pedidos' %}">Voltar</a>
     </div>
     

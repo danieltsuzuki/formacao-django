@@ -12,7 +12,6 @@
     <thead>
         <tr>
             <th>Nome</th>
-            <th>Descrição</th>
             <th>Valor</th>
             
         </tr>
@@ -22,8 +21,7 @@
     <tbody>
         {% for produto in produtos %}
         <tr>
-            <td><a href="{}">{{produto.nome}}</a></td>
-            <td>{{produto.descricao}}</td>
+            <td><a href="{% url 'listar_produto_id' produto.id %}">{{produto.nome}}</a></td>
             <td>{{produto.valor}}</td>
         </tr>
         {% endfor %}

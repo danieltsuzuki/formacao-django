@@ -17,7 +17,7 @@ def inserir_produto(request):
                 valor = valor
             )
             produtos_service.inserir_produto(produto_novo)
-            return HttpResponse('SUCCESS')
+            return redirect('listar_produtos')
     else:
         form_produto = ProdutoForm()
     return render(request, 'produtos/form_produto.html', {'form_produto': form_produto})
@@ -25,3 +25,7 @@ def inserir_produto(request):
 def listar_produtos(request):
     produtos = produtos_service.listar_produto()
     return render(request, 'produtos/lista_produtos.html', {'produtos':produtos})
+
+def listar_produto_id(request, id):
+    produto = produtos_service.listar_produto_id(id)
+    return render(request, 'produtos/listar_produto.html', {'produto':produto})

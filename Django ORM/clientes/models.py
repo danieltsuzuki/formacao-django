@@ -1,5 +1,6 @@
 from django.db import models
 from django.utils import timezone
+from django.db.models.signals import m2m_changed
 
 ## exemplo a ser trabalhado
 ## 1 cliente só pode ter 1 endereço
@@ -61,6 +62,7 @@ class Produto(models.Model):
 
 # 1 Cliente N Pedidos
 
+
 class Pedido(models.Model):
     STATUS_CHOICES = (
         ("P", "Pedido realizado"),
@@ -78,3 +80,13 @@ class Pedido(models.Model):
     def __str__(self):
         return self.cliente.nome
 
+def pre_save_produto_receiver(sender, instance, action, **kwargs):
+    if action == 'post_add' or action == 'post_remove' or action == 'post_clear':
+        produtos = instance.produtos.all()
+        total = 0
+        for produto in produtos:
+            total += produto.valor
+        instance.valor = total
+        instance.save()
+
+m2m_changed.connect(pre_save_produto_receiver, sender=Pedido.produtos.through)

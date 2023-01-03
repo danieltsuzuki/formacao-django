@@ -13,6 +13,6 @@ urlpatterns = [
     path('listar_pedido/<int:id>', pedido_views.listar_pedido_id, name='listar_pedido_id'),
     path('editar_pedido/<int:id>', pedido_views.editar_pedido, name = 'editar_pedido'),
     path('cadastrar_produto', produto_views.inserir_produto, name='cadastrar_produto'),
-    # path('listar_produto/<int:id>', produto_views.)
-    path('listar_produtos', produto_views.listar_produtos, name='listar_produtos')
+    path('listar_produto/<int:id>', produto_views.listar_produto_id, name='listar_produto_id'),
+    path('listar_produtos', produto_views.listar_produtos, name='listar_produtos'),
 ]

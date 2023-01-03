@@ -37,6 +37,12 @@
         <label>Data do pedido: </label>
         {{ form_pedido.data_pedido|addclass:'form-control'}}
     </div>
+
+    <div class="form-group">
+        {{ form_pedido.produtos.errors}}
+        <label>Produtos:</label>
+        {{ form_pedido.produtos|addclass:'form-control'}}
+    </div>
     <br>
     <div class="form-group">
         <input type="submit" name="cadastrar" value="Cadastrar">

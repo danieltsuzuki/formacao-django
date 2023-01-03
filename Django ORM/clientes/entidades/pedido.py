@@ -1,11 +1,12 @@
 class Pedido:
-    def __init__(self, cliente, observacoes, data_pedido, valor, status):
+    def __init__(self, cliente, observacoes, data_pedido, valor, status, produtos):
         self.__cliente = cliente
         self.__observacoes = observacoes
         self.__data_pedido = data_pedido
         self.__status = status
         self.__valor = valor
-    
+        self.__produtos = produtos
+
     @property
     def cliente(self):
         return self.__cliente
@@ -45,3 +46,11 @@ class Pedido:
     @valor.setter
     def valor(self, valor):
         self.__valor = valor
+        
+    @property
+    def produtos(self):
+        return self.__produtos
+    
+    @produtos.setter
+    def produtos(self, produtos):
+        self.__produtos = produtos
