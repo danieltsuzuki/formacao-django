@@ -6,4 +6,4 @@ class PedidoForm(forms.ModelForm):
     produtos = forms.ModelMultipleChoiceField(queryset= Produto.objects.all())
     class Meta:
         model = Pedido
-        fields = ('cliente', 'observacoes', 'data_pedido', 'valor', 'status', 'produtos')
+        fields = ('cliente', 'observacoes', 'data_pedido', 'status', 'produtos')

@@ -10,7 +10,7 @@ def inserir_pedido(request):
         if form_pedido.is_valid():
             cliente = form_pedido.cleaned_data["cliente"]
             observacoes = form_pedido.cleaned_data["observacoes"]
-            valor = form_pedido.cleaned_data["valor"]
+            #valor = form_pedido.cleaned_data['valor']
             status = form_pedido.cleaned_data["status"]
             data_pedido = form_pedido.cleaned_data["data_pedido"]
             produtos = form_pedido.cleaned_data["produtos"]
@@ -18,7 +18,7 @@ def inserir_pedido(request):
                 cliente = cliente,
                 observacoes = observacoes,
                 data_pedido = data_pedido,
-                valor = valor,
+                valor = 0,
                 status = status,
                 produtos = produtos
             )
@@ -45,14 +45,14 @@ def editar_pedido(request, id):
         cliente = form_pedido.cleaned_data['cliente']
         observacoes = form_pedido.cleaned_data['observacoes']
         data_pedido = form_pedido.cleaned_data['data_pedido']
-        valor = form_pedido.cleaned_data['valor']
+        #valor = form_pedido.cleaned_data['valor']
         status = form_pedido.cleaned_data['status']
         produtos = form_pedido.cleaned_data['produtos']
         pedido_novo = pedido.Pedido(
             cliente = cliente,
             observacoes = observacoes,
             data_pedido = data_pedido,
-            valor = valor,
+            valor = 0,
             status = status,
             produtos = produtos
         )
