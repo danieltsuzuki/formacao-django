@@ -20,7 +20,16 @@ def cadastrar_pedido(pedido):
         # pedido_bd.valor.set(preco)
 
 def listar_pedidos():
-    return Pedido.objects.select_related('cliente').all()
+    return Pedido.objects.select_related('cliente').all() #1 -> n
+    #return Pedido.objects.prefetch_related('produtos').all() n -> n
+    pedidos = Pedido.objects.prefetch_related('produtos').all()
+    for produto in produtos:
+        print(produto.produtos.all())
+    print(connection.queries)
+    print(len(connection.queries))
+    return pedidos
+
+
 
 def listar_pedido_id(id):
     pedido = get_object_or_404(Pedido, pk = id)
